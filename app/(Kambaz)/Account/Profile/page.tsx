@@ -1,7 +1,36 @@
 import Link from "next/link";
+import { FormControl } from "react-bootstrap";
 export default function Profile() {
   return (
     <div id="wd-profile-screen">
+      <h1>Profile</h1>
+      <FormControl id="wd-username"
+             value="alice"
+             className="mb-2"/><br />
+      <FormControl id="wd-password"
+             value="123"
+             className="mb-2"/><br />
+      <FormControl id="wd-firstname"
+             value="Alice"
+             className="mb-2"/><br />
+      <FormControl id="wd-lastname"
+             value="Wonderland"
+             className="mb-2"/><br />
+      <FormControl id="wd-dob"
+             value="2000-01-01"
+             className="mb-2"/><br />
+      <FormControl id="wd-email"
+             value="alice@wonderland"
+             className="mb-2"/><br />
+      <FormControl id="wd-role"
+             value="Faculty"
+             className="mb-2"/><br />
+
+      <Link id="wd-signout-btn"
+            href="/Account/Signin"
+            className="btn btn-danger w-100 mb-2">
+            Signout</Link><br />
+
       <h3>Profile</h3>
       <input defaultValue="alice" placeholder="username" className="wd-username"/><br/>
       <input defaultValue="123"   placeholder="password" type="password"

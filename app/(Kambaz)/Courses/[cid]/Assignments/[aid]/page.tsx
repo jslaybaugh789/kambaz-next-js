@@ -1,95 +1,118 @@
+import { Card, Col, Form, InputGroup, Row } from "react-bootstrap";
+import InputGroupText from "react-bootstrap/esm/InputGroupText";
+import { FaRegCalendarAlt } from "react-icons/fa";
+
 export default function AssignmentEditor() {
   return (
     <div id="wd-assignments-editor">
-      <label htmlFor="wd-name">Assignment Name</label>
-      <input id="wd-name" defaultValue="A1 - ENV + HTML" /><br /><br />
-      <textarea id="wd-description">
-        The assignment is available online Submit a link to the landing page of
-      </textarea>
-      <br />
-      <table>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-points">Points</label>
-          </td>
-          <td>
-            <input id="wd-points" defaultValue={100} />
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-group">Assignment Group</label>
-          </td>
-          <td>
-            <select id="wd-group">
-                <option value="ASSIGNMENTS">ASSIGNMENTS</option>
-                <option value="QUIZZES">QUIZZES</option>
-                <option value="EXAMS">EXAMS</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-display-grade-as">Display Grade as</label>
-          </td>
-          <td>
-            <select id="wd-display-grade-as">
-                <option value="Percentage">Percentage</option>
-                <option value="Letter">Letter</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-submission-type">Submission Type</label>
-          </td>
-          <td>
-            <select id="wd-submission-type">
+      <Form.Label className="mb-3">Assignment Name</Form.Label>
+      <Form.Control className="mb-3" value="A1" />
+      
+      <Form.Control as="textarea" rows={12} className="mb-3" value="The assignment is available online 
+      Submit a link to the landing page of your Web application running on Netify." />
+    
+      <Row className="mb-3">
+        <Col xs={4}>
+          <Form.Label className="wb-3 float-end">Assignment Name</Form.Label>
+        </Col>
+        <Col >
+          <Form.Control className="wb-3 float-end"></Form.Control>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={4}>
+          <Form.Label className="mb-3 float-end">Points </Form.Label>
+        </Col>
+        <Col >
+          <Form.Control className="mb-3 float-end" value='100'></Form.Control>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={4}>
+          <Form.Label className="mb-3 float-end">Assignment Group </Form.Label>
+        </Col>
+        <Col >
+          <Form.Select className="mb-3 float-end">
+            <option value="ASSIGNMENTS">ASSIGNMENTS</option>
+            <option value="QUIZZES">QUIZZES</option>
+            <option value="EXAMS">EXAMS</option>
+          </Form.Select>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={4}>
+          <Form.Label className="mb-3 float-end">Display Grade As </Form.Label>
+        </Col>
+        <Col >
+          <Form.Select className="mb-3 float-end">
+            <option value="Percentage">Percentage</option>
+            <option value="Letter">Letter</option>
+          </Form.Select>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={4}>
+          <Form.Label className="mb-3 float-end">Submission Type </Form.Label>
+        </Col>
+        <Col >
+          <Form>
+            <Card className="p-3 mb-3">
+              <Form.Select className="mb-3 float-end">
                 <option value="Online">Online</option>
                 <option value="In-Person">In-Person</option>
-            </select> <br/>
-            Online Entry Options <br/>
-            <input type="checkbox" name="check-entry-options" id="wd-text-entry"/>
-            <label htmlFor="wd-text-entry">Text Entry</label><br/>
+              </Form.Select>
+              <Form.Label className="mb-3">Online Entry Options </Form.Label>
+              <Form.Check type="checkbox" label="Text Entry" name="check-entry-options"  />
+              <Form.Check type="checkbox" label="Website URL" name="check-entry-options"  />
+              <Form.Check type="checkbox" label="Media Recordings" name="check-entry-options"  />
+              <Form.Check type="checkbox" label="Student Annotations" name="check-entry-options"  />
+              <Form.Check type="checkbox" label="File Uploads" name="check-entry-options"  />
+            </Card>
+          </Form>
+        </Col>
+      </Row>
 
-            <input type="checkbox" name="check-entry-options" id="wd-website-url"/>
-            <label htmlFor="wd-website-url">Website URL</label><br/>
-
-            <input type="checkbox" name="check-entry-options" id="wd-media-recordings"/>
-            <label htmlFor="wd-media-recordings">Media Recordings</label><br/>
-
-            <input type="checkbox" name="check-entry-options" id="wd-student-annotation"/>
-            <label htmlFor="wd-student-annotation">Student Annotation</label><br/>
-
-            <input type="checkbox" name="check-entry-options" id="wd-file-upload"/>
-            <label htmlFor="wd-file-upload">File Uploads</label><br/>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top">
-            Assign
-          </td>
-          <td>
-            <label htmlFor="wd-assign-to">Assign To</label> <br/>
-            <input id="wd-assign-to" defaultValue={"Everyone"} /> <br/>
-            <br/>
-            <label htmlFor="wd-due-date"> Due </label> <br/>
-            <input type="date"
-                defaultValue="2024-05-13"
-                id="wd-due-date"/><br/>
-            <br/>
-            <label htmlFor="wd-available-from"> Available from </label> <br/>
-            <input type="date"
-                defaultValue="2024-05-06"
-                id="wd-available-from"/><br/>
-            <br/>
-            <label htmlFor="wd-available-until"> Until </label> <br/>
-            <input type="date"
-                defaultValue="2024-05-20"
-                id="wd-available-until"/><br/>
-            <br/>
-          </td>
-        </tr>
-      </table>
+      <Row>
+        <Col xs={4}>
+          <Form.Label className="mb-3 float-end">Assign </Form.Label>
+        </Col>
+        <Col >
+          <Card className="p-3 mb-3">
+            <Form.Label> Assign To</Form.Label>
+            <Form.Control className="mb-3 float-end" value="Everyone"></Form.Control>
+            <Form.Label> Due</Form.Label>
+            <InputGroup className="mb-3 float-start">
+                <Form.Control className="mb-3"
+                value="2024-05-13"
+                />
+                <InputGroupText className="mb-3"><FaRegCalendarAlt/></InputGroupText>
+            </InputGroup>
+            <Row>
+              <Col>
+                <Form.Label> Available from</Form.Label>
+                <InputGroup className="mb-3 float-start">
+                    <Form.Control className="mb-3"
+                    value="2024-05-06"
+                    />
+                    <InputGroupText className="mb-3"><FaRegCalendarAlt/></InputGroupText>
+                </InputGroup>
+              </Col>
+              <Col>
+                <Form.Label> Until</Form.Label>
+                <InputGroup className="mb-3 float-start" >
+                    <Form.Control className="mb-3"
+                    value="2024-05-20"
+                    />
+                    <InputGroupText className="mb-3"><FaRegCalendarAlt/></InputGroupText>
+                </InputGroup>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
     </div>
 );}
