@@ -1,24 +1,20 @@
+"use client"
+import { useParams } from "next/navigation";
 import { Card, Col, Form, InputGroup, Row } from "react-bootstrap";
 import InputGroupText from "react-bootstrap/esm/InputGroupText";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import * as db from "../../../../Database";
 
 export default function AssignmentEditor() {
+  const { aid } = useParams();
+  const assignment = db.assignments.filter((assignment) => assignment._id === aid);
   return (
     <div id="wd-assignments-editor">
       <Form.Label className="mb-3">Assignment Name</Form.Label>
-      <Form.Control className="mb-3" value="A1" />
+      <Form.Control className="mb-3" value={assignment[0].title} />
       
       <Form.Control as="textarea" rows={12} className="mb-3" value="The assignment is available online 
       Submit a link to the landing page of your Web application running on Netify." />
-    
-      <Row className="mb-3">
-        <Col xs={4}>
-          <Form.Label className="wb-3 float-end">Assignment Name</Form.Label>
-        </Col>
-        <Col >
-          <Form.Control className="wb-3 float-end"></Form.Control>
-        </Col>
-      </Row>
 
       <Row>
         <Col xs={4}>
