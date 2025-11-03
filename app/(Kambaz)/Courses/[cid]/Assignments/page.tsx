@@ -9,10 +9,14 @@ import AssignmentsControlButtons from "./AssignmentsControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import AssignmentControls from "./AssignmentControls";
 import { useParams } from "next/navigation";
-import * as db from "../../../Database";
+import { RootState } from "../../../store";
+import { addAssignment, updateAssignment, deleteAssignment }
+  from "./reducer";
+import { useSelector, useDispatch } from "react-redux";
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments.filter((assignment) => assignment.course === cid);
+  const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
+  const dispatch = useDispatch();
   return (
     <div id="wd-assignments">
       <AssignmentControls/>
@@ -23,17 +27,22 @@ export default function Assignments() {
             <BsGripVertical className="me-2 fs-3" /> <IoMdArrowDropdown/> ASSIGNMENTS <AssignmentsControlButtons/>
           </div>
           <ListGroup className="wd-assignments rounded-0">
-            {assignments.map((assignment: any) => (
-              <ListGroupItem key={assignment.name} className="wd-lesson p-3 ps-1">
+            {assignments
+            .filter((assignment: any) => assignment.course === cid)
+            .map((assignment: any) => (
+            <ListGroupItem key={assignment._id} className="wd-lesson p-3 ps-1">
               <Row>
               <Col xs="auto"><BsGripVertical className="me-2 fs-3" /></Col>
               <Col xs="auto"><FiFileText className="me-2" style={{ color:"green"}}/></Col>
               <Col> <Link href={`/Courses/${cid}/Assignments/${assignment._id}`} style={{color:"black"}}><h4>{assignment._id} - {assignment.title}</h4></Link>
-              <span className="text-danger"> Multiple Modules </span>| <b>Not available until</b> May 6 at 12:00am | <b>Due</b> May 13 at 11:59pm | 100 pts
+              <span className="text-danger"> Multiple Modules </span>| <b>Not available until</b> {assignment.available_from} | <b>Due</b> {assignment.due} | {assignment.points} pts
               </Col>
-              <Col xs="auto"> <AssignmentControlButtons/></Col>
+              <Col xs="auto">
+              <AssignmentControlButtons assignmentId={assignment._id} 
+                deleteAssignment={(assignmentId) => {dispatch(deleteAssignment(assignmentId))}}/>
+              </Col>
               </Row>
-            </ListGroupItem>))} 
+            </ListGroupItem>))}
           </ListGroup>
         </ListGroupItem>
       </ListGroup>
