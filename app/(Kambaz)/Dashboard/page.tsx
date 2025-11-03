@@ -9,7 +9,7 @@ import { addNewCourse, deleteCourse, updateCourse } from "../Courses/reducer";
 import { RootState } from "../store";
 export default function Dashboard() {
   const { courses } = useSelector((state: RootState) => state.coursesReducer);
-  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+  const currentUser: any = useSelector((state: RootState) => state.accountReducer);
   const { enrollments } = db;
   const dispatch = useDispatch();
   const [course, setCourse] = useState<any>({
@@ -20,7 +20,7 @@ export default function Dashboard() {
   if (!currentUser) {
     return (
       <div>Not loaded</div>
-    )
+    );
   }
   return (
     <div id="wd-dashboard">
