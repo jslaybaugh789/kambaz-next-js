@@ -17,6 +17,11 @@ export default function Dashboard() {
     startDate: "2023-09-10", endDate: "2023-12-15",
     image: "/images/reactjs.jpg", description: "New Description"
   });
+  if (!currentUser) {
+    return (
+      <div>Not loaded</div>
+    )
+  }
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
@@ -35,7 +40,7 @@ export default function Dashboard() {
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-           {courses.filter((course) => 
+           {courses.filter((course) =>
             enrollments.some(
               (enrollment) =>
                 enrollment.user === currentUser._id &&
